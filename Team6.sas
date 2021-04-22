@@ -1,4 +1,3 @@
-libname sasproj 'm:/seane/SASProject';
 
 data pulse;
 set sasproj.pulse2020_PUF_01 sasproj.pulse2020_puf_02 sasproj.pulse2020_puf_03 sasproj.pulse2020_puf_04
@@ -16,11 +15,6 @@ set work.oxford;
 newdate = input(put(date,8.),yymmdd8.);
 format newdate date10.;
 drop date;
-run;
-
-proc import datafile = "m:\seane\SASProject\Region.csv"
-out = work.region replace
-dbms=csv;
 run;
 
 data work.oxford_prelim;
@@ -70,7 +64,7 @@ infile fips dsd;
 run;
 
 data population;
- infile  "M:\seane\SASProject\co-est2019-alldata.csv" dlm=',' firstobs=2;
+ infile  "M:\SASProject\co-est2019-alldata.csv" dlm=',' firstobs=2;
  input dummy dummy dummy STATE:$char2. COUNTY:$char3. dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy dummy POPESTIMATE2019:comma10.;
  fips=cats(STATE,COUNTY);
  drop dummy;
@@ -121,7 +115,7 @@ if week in ('1','2','3', '4', '5', '6', '7', '8', '9', '10', '11', '12');
 run;
 
 
-libname reffile XLSX "M:/seane/SASProject/metrofips.xlsx";
+libname reffile XLSX "M:/SASProject/metrofips.xlsx";
 data metrofips;
 set reffile.list1;
 fips = cats(fipsst, fipscty);
@@ -357,20 +351,20 @@ drop UnitID ImpIndex;
 run;
 
 PROC EXPORT DATA= final_dataset
-OUTFILE= "m:/seane/SASProject/final_dataset.csv" replace
+OUTFILE= "m:/SASProject/final_dataset.csv" replace
 DBMS=CSV ;
 PUTNAMES=YES;
 RUN;
 
 
 PROC EXPORT DATA= covidtotals
-OUTFILE= "m:/seane/SASProject/covidtotals.csv" replace
+OUTFILE= "m:/SASProject/covidtotals.csv" replace
 DBMS=CSV ;
 PUTNAMES=YES;
 RUN;
 
 PROC EXPORT DATA= final_dataset_imputed
-OUTFILE= "m:/seane/SASProject/final_dataset_imputed.csv" replace
+OUTFILE= "m:/SASProject/final_dataset_imputed.csv" replace
 DBMS=CSV ;
 PUTNAMES=YES;
 RUN;
