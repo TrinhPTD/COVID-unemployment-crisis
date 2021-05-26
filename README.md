@@ -1,4 +1,4 @@
-# COVID-unemployment-crisis
+# Impact of COVID-19 on US unemployment
 
 Losing a job is not only devastating to the individual and affected household, but is also a
 major economic issue. Okun’s law, named after Yale Economist Arthur Okun, states that
